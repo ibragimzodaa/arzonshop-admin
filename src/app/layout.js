@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Bolo/>
-        <div className="flex">
+        <div className="flex md:block gap-[50px]">
         <Header/>{children}
         </div>
         </body>

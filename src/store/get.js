@@ -11,6 +11,15 @@ export const useGet = create((set,get) => ({
       console.error(error);
     }
   },
+  subcategory: [],
+  getSubCategory: async () => {
+    try {
+      const { data } = await axiosRequest.get(`/SubCategory/get-sub-category`);
+      set({subcategory:data.data})
+    } catch (error) {
+      console.error(error);
+    }
+  },
   postCategory: async (obj) => {
     try {
       const { data } = await axiosRequest.post(`/Category/add-category`,obj);

@@ -12,7 +12,7 @@ export default function Header() {
     }
   return (
     <div style={{backgroundColor: primary}}>
-      <div className='container sticky top-[60px] h-[695px]'>
+      <div className='z-20 shadow-2xl container sticky top-[60px] h-[695px] md:h-[250px]'>
         <Link href="/dashboard">
       <div style={path == "/dashboard" ? {backgroundColor:"white" , color: "black"} : {backgroundColor:"" , color: "white"}} className="flex items-center cursor-pointer p-[15px] rounded-lg">
       <House className=''/>

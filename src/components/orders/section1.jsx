@@ -30,9 +30,9 @@ const OrdersPage = () => {
       <Button  style={{backgroundColor: primary}}>+ Add order</Button>
       </div>
       <div className="flex w-[400px] mb-[40px] justify-between">
-        <Input placeholder="Search..." className="w-[200px]"/>
+        <Input placeholder="Search..." className="w-[200px] md:w-[150px]"/>
         <Select>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[180px] md:w-[150px] md:ml-[-20px]">
         <SelectValue placeholder="Select a fruit" />
       </SelectTrigger>
       <SelectContent>

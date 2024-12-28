@@ -9,7 +9,6 @@ export const useProd = create((set, get) => ({
       set({ products: data.data.products });
     } catch (error) {
       console.error(error);
-      alert("Login failed!");
     }
   },
   deleteProd: async (id) => {
@@ -24,9 +23,8 @@ export const useProd = create((set, get) => ({
     try {
         await axiosRequest.post("/Product/add-product", formData);  
         get().getProd();          
-    } catch (error) {
-        console.error("API error:", error.response?.data || error.message);
-        throw error;
+    } catch (error) {        console.error(error);
+    ;
     }
 },
   putProd: async (editProducts, id) => {
@@ -34,8 +32,8 @@ export const useProd = create((set, get) => ({
         await axiosRequest.put(`/Product/update-product?Id=${id}`, editProducts);  
         get().getProd();          
     } catch (error) {
-        console.error("API error:", error.response?.data || error.message);
-        throw error;
-    }
+      console.error(error);
+      
+        }
 },
 }));

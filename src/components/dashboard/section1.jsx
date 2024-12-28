@@ -6,7 +6,7 @@ import image3 from '../../assets/dashboard/div.MuiBox-root (1).png'
 
 export default function Section1() {
   return (
-    <div className='flex items-center justify-between mb-[50px]'>
+    <div className='flex items-center justify-between mb-[50px] md:flex-wrap md:justify-center md:gap-[40px]'>
       <div className='bg-[#fbe8e6] flex items-center p-[15px] w-[200px] rounded-[15px]'>
         <Image src={image1} alt=''/>
         <div className='ml-[20px]'>

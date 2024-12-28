@@ -56,10 +56,10 @@ export default function Categories() {
 
   return (
     <div>
+      <div className='flex items-center justify-between max-w-[1200px] p-[10px] m-auto md:flex-wrap md:justify-center md:gap-10'>
             <Input value={inpSearch} onChange={(e) => setInpSearch(e.target.value)} type="search" placeholder="search..." className="w-[300px]"/>
-
          <Dialog>
-              <DialogTrigger style={{backgroundColor: primary}} className='rounded-[5px] p-[10px] text-[white] ml-[1140px] mb-[50px]'>
+              <DialogTrigger style={{backgroundColor: primary}} className='rounded-[5px] p-[10px] text-[white]'>
                   Add category
               </DialogTrigger>
               <DialogContent>
@@ -73,38 +73,66 @@ export default function Categories() {
                   </form>
               </DialogContent>
           </Dialog>
-    <div className='grid grid-cols-5 gap-[30px]'>
-      {categories.filter((el)=> el.categoryName.toLowerCase().includes(inpSearch)).map((el) => {
-        return <div key={el.id} className='flex w-[200px] justify-between border-[1px] border-[gray] p-[20px]'>
-          <div>
-          <Image width={100} height={100} src={apiImage + el.categoryImage} alt=''/>
-          <h1>{el.categoryName}</h1>
-          </div>
-          <div>
-          <div onClick={() => deleteCategory(el.id)} className="bg-[white] hover:bg-[white] cursor-pointer">
-  <Trash2 className="text-[red]" />
-</div>
-          {/* <Button onClick={() => deleteCategory(el.id)} className="bg-[white] hover:bg-[white]">
-            <Trash2 className='text-[red]' />
-          </Button> */}
-          <Dialog>
-              <DialogTrigger>
-              <div className="bg-[white] hover:bg-[white]"><Pencil style={{color:primary}} /></div>
-              </DialogTrigger>
-              <DialogContent>
-                  <DialogHeader>
-                      <DialogTitle>Category adding</DialogTitle>                                
-                  </DialogHeader>
-                  <form onSubmit={(e) => {handleSubmit2(e, el.id)}}>
-                      <Input type="file" name="image" id="" />
-                      <Input type="text" className='border-[1px] border-[gray]' placeholder='category name' name="subCategoryId" id="" />
-                      <Button type="submit" variant="primary">Submit</Button>
-                  </form>
-              </DialogContent>
-          </Dialog>
       </div>
-        </div>
-      })}
+      <div className="grid grid-cols-5 gap-8 md:grid-cols-1 md:ml-[50px]">
+      {/* Search bar for filtering */}
+      {categories
+        .filter((el) => el.categoryName.toLowerCase().includes(inpSearch))
+        .map((el) => (
+          <div
+            key={el.id}
+            className="flex flex-col w-[200px] border border-gray-300 p-4 rounded shadow-sm hover:shadow-md"
+          >
+            <div className="mb-4">
+              <Image
+                width={100}
+                height={100}
+                src={`${apiImage}${el.categoryImage}`}
+                alt={el.categoryName}
+                className="rounded"
+              />
+              <h1 className="text-center font-semibold mt-2">{el.categoryName}</h1>
+            </div>
+
+            <div className="flex justify-between items-center">
+              <div
+                onClick={() => deleteCategory(el.id)}
+                className="cursor-pointer p-2 rounded hover:bg-red-100"
+              >
+                <Trash2 className="text-red-600" />
+              </div>
+
+              <Dialog>
+                <DialogTrigger>
+                  <div className="cursor-pointer p-2 rounded hover:bg-gray-100">
+                    <Pencil className="text-gray-600" />
+                  </div>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Edit Category</DialogTitle>
+                  </DialogHeader>
+                  <form onSubmit={(e) => handleSubmit2(e, el.id)}>
+                    <div className="mb-4">
+                      <Input type="file" name="image" className="w-full" />
+                    </div>
+                    <div className="mb-4">
+                      <Input
+                        type="text"
+                        className="w-full border border-gray-300 p-2 rounded"
+                        placeholder="Category name"
+                        name="subCategoryId"
+                      />
+                    </div>
+                    <Button type="submit" variant="primary" className="w-full">
+                      Submit
+                    </Button>
+                  </form>
+                </DialogContent>
+              </Dialog>
+            </div>
+          </div>
+        ))}
     </div>
     </div>
   )
